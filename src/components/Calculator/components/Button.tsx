@@ -1,10 +1,13 @@
 interface ButtonProps {
-    children: string;
-    handleClick?: () => void
+  children: string;
 }
 
-const Button:React.FC<ButtonProps> = ({children, handleClick}) => {
-    return <button className="calculator__button" onClick={handleClick}>{children}</button>
-}
+const Button: React.FC<ButtonProps> = (props) => {
+  return (
+    <button {...props} className="calculator__button">
+      {props.children}
+    </button>
+  );
+};
 
 export default Button;

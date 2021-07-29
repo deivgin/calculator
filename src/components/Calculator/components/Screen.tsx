@@ -1,8 +1,14 @@
-const Screen = () => {
-    return <div className="calculator__screen">
-        <div className="calculation">10 * 3</div>
-        <div className="number">24</div>
-    </div>
+interface ScreenProps {
+  display: string;
 }
 
-export default Screen
+const Screen: React.FC<ScreenProps> = ({ display }) => {
+  return (
+    <div className="calculator__screen">
+      <div className="calculation">10 * 3</div>
+      <div className="number">{display}</div>
+    </div>
+  );
+};
+
+export default Screen;

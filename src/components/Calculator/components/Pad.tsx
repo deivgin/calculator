@@ -1,11 +1,17 @@
-import Button from "./Button"
+import Button from "./Button";
 
 interface PadProps {
-    characters: string[]
+  characters: string[];
 }
 
-const Pad: React.FC<PadProps> = ({characters}) => {
-    return <div>{characters.map((char)=><Button>{char}</Button>)}</div>
-}
+const Pad: React.FC<PadProps> = ({ characters }) => {
+  return (
+    <div>
+      {characters.map((char, index) => (
+        <Button key={index}>{char}</Button>
+      ))}
+    </div>
+  );
+};
 
-export default Pad
+export default Pad;
