@@ -25,14 +25,11 @@ const characters = [
 const Calculator = () => {
   const [display, setDisplay] = useState("0");
 
-  const handleClick = (number: string) => {
-    setDisplay(number);
-  };
   return (
     <div className="calculator">
       <h1 className="calculator__name">Calculator name</h1>
       <Screen display={display} />
-      <Pad characters={characters} handleClick={handleClick} />
+      <Pad characters={characters} />
     </div>
   );
 };
