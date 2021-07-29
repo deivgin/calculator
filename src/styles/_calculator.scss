@@ -1,0 +1,35 @@
+.calculator{
+    border: solid 2px #000;
+    width: 50rem;
+
+    &__name{
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    &__button{
+        background-color: inherit;
+        border: solid .2rem #000;
+        font-size: 3rem;
+        width: var(--buttonSize);
+        height: var(--buttonSize);
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+        &:active{
+            transform: scale(1);
+        }
+    }
+
+    &__screen{
+        .calculation{
+            font-size: 2rem;
+        }
+
+        .number{
+            text-align: center;
+            font-size: 8rem;
+        }
+    }
+}
