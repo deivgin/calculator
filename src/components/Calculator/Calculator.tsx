@@ -1,35 +1,36 @@
 import Screen from "./components/Screen";
 import Pad from "./components/Pad";
 import { useState } from "react";
+import { Operand, Operator } from "./components/model";
 
-const characters = [
-  "=",
-  "C",
-  "*",
-  ":",
-  "-",
-  "+",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  ".",
-  "0",
-];
+import characters from "../../utils/characters";
 
 const Calculator = () => {
-  const [display, setDisplay] = useState("0");
+  const [currOperand, setCurrOperand] = useState("0");
+  const [prevOperand, setPrevOperand] = useState("");
+  const [selectedOperation, setSelectedOperation] = useState<Operator>();
+
+  const appendOperand = (number: Operand) => {
+    currOperand === "0"
+      ? setCurrOperand(number)
+      : setCurrOperand(`${currOperand}${number}`);
+  };
+
+  const chooseOperation = (operation: Operator) => {
+    setPrevOperand(currOperand);
+    setCurrOperand("0");
+    setSelectedOperation(operation);
+  };
 
   return (
     <div className="calculator">
       <h1 className="calculator__name">Calculator name</h1>
-      <Screen display={display} />
-      <Pad characters={characters} />
+      <Screen display={currOperand} />
+      <Pad
+        characters={characters}
+        appendOperand={appendOperand}
+        chooseOperation={chooseOperation}
+      />
     </div>
   );
 };
