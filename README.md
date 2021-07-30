@@ -1,9 +1,10 @@
 # calculator app
+
 App whose purpose is to practice react and typescript
 
-Requirements:
+## Requirements:
 
-- It must be possible to perform basic calculations (+ - * /) with floating-point numbers
+- It must be possible to perform basic calculations (+ - \* /) with floating-point numbers
 - It must be possible to update calculator's name live
 - Calculator's state must be reset, when it's name is changed
 
@@ -15,3 +16,8 @@ Requirements:
 - Would be nice to have scss syntax used for styling
 
 P.S. You are free to refactor existing code, change the design or add any new features! And remember - quality over quantity! Good luck :)
+
+## Current plan:
+
+- generate different buttons based on its type
+- create basic functionality

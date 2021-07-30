@@ -1,17 +1,14 @@
+import { numbers } from "../../../utils/characters";
 import Button from "./Button";
+import { Operand, Operator } from "./model";
 
-interface PadProps {
-  characters: string[];
+interface Props {
+  numbers: number[];
 }
 
-const Pad: React.FC<PadProps> = ({ characters }) => {
-  return (
-    <div>
-      {characters.map((char, index) => (
-        <Button key={index}>{char}</Button>
-      ))}
-    </div>
-  );
+const Pad: React.FC<Props> = ({}) => {
+  const switchBetweenOperations = (char: string) => {};
+  return <div>{}</div>;
 };
 
 export default Pad;

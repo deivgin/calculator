@@ -1,12 +1,10 @@
-interface ScreenProps {
-  display: string;
-}
+import { Operator } from "./model";
 
-const Screen: React.FC<ScreenProps> = ({ display }) => {
+const Screen: React.FC = () => {
   return (
     <div className="calculator__screen">
-      <div className="calculation">10 * 3</div>
-      <div className="number">{display}</div>
+      <div className="calculation">10/5</div>
+      <div className="number">10</div>
     </div>
   );
 };
