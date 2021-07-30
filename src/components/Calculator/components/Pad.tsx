@@ -7,7 +7,8 @@ interface Props {
   numbers: Operand[];
   operations: Operator[];
   actions: Action[];
-  setFirstOperand: (num: number) => void;
+  setFirstOperand: (num: Operand) => void;
+  chooseOperator: (operator: Operator) => void;
 }
 
 const Pad: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const Pad: React.FC<Props> = ({
   operations,
   actions,
   setFirstOperand,
+  chooseOperator,
 }) => {
   return (
     <div className="pad">
@@ -25,10 +27,15 @@ const Pad: React.FC<Props> = ({
       </div>
       <div className="pad__operators">
         {operations.map((operation, index) => (
-          <OperationButton key={index}>{operation}</OperationButton>
+          <OperationButton
+            key={index}
+            operation={operation}
+            onClick={chooseOperator}
+          />
         ))}
       </div>
       <ActionButton char="=" type="equal" />
+      <ActionButton char="AC" type="reset" />
       <ActionButton char="C" type="delete" />
       <ActionButton char="." type="dot" />
     </div>

@@ -16,7 +16,7 @@ const operations: Operator[] = ["×", "÷", "-", "+"];
 const Calculator = () => {
   const [state, setState] = useState<State>(initialState);
 
-  const setFirstOperand = (num: number) => {
+  const setFirstOperand = (num: Operand) => {
     if (state.firstOperand === "0") {
       setState((prevState) => ({ ...prevState, firstOperand: num.toString() }));
     } else {
@@ -27,15 +27,34 @@ const Calculator = () => {
     }
   };
 
+  const chooseOperator = (operator: Operator) => {
+    switch (operator) {
+      case "×":
+        setState((prevState) => ({ ...prevState, operation: "×" }));
+        break;
+      case "÷":
+        setState((prevState) => ({ ...prevState, operation: "÷" }));
+        break;
+      case "-":
+        setState((prevState) => ({ ...prevState, operation: "-" }));
+        break;
+      case "+":
+        setState((prevState) => ({ ...prevState, operation: "+" }));
+        break;
+      default:
+    }
+  };
+
   return (
     <div className="calculator">
       <h1 className="calculator__name">Calculator name</h1>
-      <Screen mainScreen={state.firstOperand} />
+      <Screen mainScreen={state.firstOperand} operation={state.operation} />
       <Pad
         numbers={numbers}
         actions={actions}
         operations={operations}
         setFirstOperand={setFirstOperand}
+        chooseOperator={chooseOperator}
       />
     </div>
   );

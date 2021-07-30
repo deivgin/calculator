@@ -2,7 +2,7 @@ import { Action } from "./model";
 
 interface Props {
   char: Action;
-  type: string;
+  type: "equal" | "reset" | "delete" | "dot";
 }
 
 const ActionButton: React.FC<Props> = ({ char, type }) => {

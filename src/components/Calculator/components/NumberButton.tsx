@@ -2,7 +2,7 @@ import { Operand } from "./model";
 
 interface Props {
   number: Operand;
-  onClick: (num: number) => void;
+  onClick: (num: Operand) => void;
 }
 
 const NumberButton: React.FC<Props> = ({ number, onClick }) => {
