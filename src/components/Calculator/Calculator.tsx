@@ -27,7 +27,17 @@ const Calculator = () => {
     }
   };
 
+  const setSecondOperand = () => {
+    setState((prevState) => ({
+      ...prevState,
+      secondOperand: state.firstOperand,
+      firstOperand: "0",
+    }));
+  };
+
   const chooseOperator = (operator: Operator) => {
+    state.secondOperand !== "0" ? setSecondOperand() : null;
+
     switch (operator) {
       case "×":
         setState((prevState) => ({ ...prevState, operation: "×" }));
@@ -45,16 +55,25 @@ const Calculator = () => {
     }
   };
 
+  const reset = () => {
+    setState(initialState);
+  };
+
   return (
     <div className="calculator">
       <h1 className="calculator__name">Calculator name</h1>
-      <Screen mainScreen={state.firstOperand} operation={state.operation} />
+      <Screen
+        mainScreen={state.firstOperand}
+        operation={state.operation}
+        secondOperand={state.secondOperand}
+      />
       <Pad
         numbers={numbers}
         actions={actions}
         operations={operations}
         setFirstOperand={setFirstOperand}
         chooseOperator={chooseOperator}
+        reset={reset}
       />
     </div>
   );
