@@ -1,11 +1,17 @@
+import { Operand } from "./model";
+
 interface Props {
-  children: number;
+  number: Operand;
+  onClick: (num: number) => void;
 }
 
-const NumberButton: React.FC<Props> = ({ children }) => {
+const NumberButton: React.FC<Props> = ({ number, onClick }) => {
   return (
-    <button className="calculator__button calculator__button--number">
-      {children}
+    <button
+      className="calculator__button calculator__button--number"
+      onClick={() => onClick(number)}
+    >
+      {number}
     </button>
   );
 };

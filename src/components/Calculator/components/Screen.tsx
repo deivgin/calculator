@@ -1,10 +1,14 @@
 import { Operator } from "./model";
 
-const Screen: React.FC = () => {
+interface Props {
+  mainScreen: string;
+}
+
+const Screen: React.FC<Props> = ({ mainScreen }) => {
   return (
     <div className="calculator__screen">
       <div className="calculation">10/5</div>
-      <div className="number">10</div>
+      <div className="number">{mainScreen}</div>
     </div>
   );
 };
