@@ -43,3 +43,23 @@ const calculate = () => {
     default:
   }
 };
+
+//=======================================================================
+const setFirstOperand = (num: Operand) => {
+  if (state.firstOperand === "0") {
+    setState((prevState) => ({ ...prevState, firstOperand: num.toString() }));
+  } else {
+    setState((prevState) => ({
+      ...prevState,
+      firstOperand: state.firstOperand + num.toString(),
+    }));
+  }
+};
+
+const setSecondOperand = () => {
+  setState((prevState) => ({
+    ...prevState,
+    secondOperand: state.firstOperand,
+    firstOperand: "0",
+  }));
+};

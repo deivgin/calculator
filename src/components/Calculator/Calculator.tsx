@@ -20,43 +20,28 @@ const Calculator = () => {
     console.log(state);
   }, [state]);
 
-  const setFirstOperand = (num: Operand) => {
-    if (state.firstOperand === "0") {
-      setState((prevState) => ({ ...prevState, firstOperand: num.toString() }));
+  const setOperand = (num: number) => {
+    if (state.operation === null) {
+      setState((prevState) => ({
+        ...prevState,
+        firstOperand:
+          state.firstOperand === "0"
+            ? num.toString()
+            : state.firstOperand + num.toString(),
+      }));
     } else {
       setState((prevState) => ({
         ...prevState,
-        firstOperand: state.firstOperand + num.toString(),
+        secondOperand:
+          state.secondOperand === "0"
+            ? num.toString()
+            : state.secondOperand + num.toString(),
       }));
     }
   };
 
-  const setSecondOperand = () => {
-    setState((prevState) => ({
-      ...prevState,
-      secondOperand: state.firstOperand,
-      firstOperand: "0",
-    }));
-  };
-
   const chooseOperator = (operator: Operator) => {
-    state.secondOperand === "" ? setSecondOperand() : null;
-
-    switch (operator) {
-      case "×":
-        setState((prevState) => ({ ...prevState, operation: "×" }));
-        break;
-      case "÷":
-        setState((prevState) => ({ ...prevState, operation: "÷" }));
-        break;
-      case "-":
-        setState((prevState) => ({ ...prevState, operation: "-" }));
-        break;
-      case "+":
-        setState((prevState) => ({ ...prevState, operation: "+" }));
-        break;
-      default:
-    }
+    setState((prevState) => ({ ...prevState, operation: operator }));
   };
 
   const reset = () => {
@@ -66,16 +51,21 @@ const Calculator = () => {
   const calculate = () => {
     const firstNum = parseInt(state.firstOperand);
     const secondNum = parseInt(state.secondOperand);
-    let answer: number;
+    let answer = 0;
     if (state.operation === "×") {
       answer = firstNum * secondNum;
     } else if (state.operation === "+") {
       answer = firstNum + secondNum;
     } else if (state.operation === "-") {
-      answer = secondNum - firstNum;
+      answer = firstNum - secondNum;
     } else if (state.operation === "÷") {
-      answer = secondNum / firstNum;
+      answer = firstNum / secondNum;
     }
+
+    setState((prevState) => ({
+      ...prevState,
+      firstOperand: answer.toString(),
+    }));
   };
 
   return (
@@ -90,7 +80,7 @@ const Calculator = () => {
         numbers={numbers}
         actions={actions}
         operations={operations}
-        setFirstOperand={setFirstOperand}
+        setOperand={setOperand}
         chooseOperator={chooseOperator}
         reset={reset}
         calculate={calculate}

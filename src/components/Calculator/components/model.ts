@@ -6,7 +6,7 @@ export interface State {
 
 export const initialState: State = {
   firstOperand: "0",
-  secondOperand: "",
+  secondOperand: "0",
   operation: null,
 };
 
