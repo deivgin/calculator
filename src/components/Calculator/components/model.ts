@@ -1,12 +1,14 @@
 export interface State {
   firstOperand: string;
   secondOperand: string;
+  mainNumber: string;
   operation: Operator | null;
 }
 
 export const initialState: State = {
   firstOperand: "0",
   secondOperand: "0",
+  mainNumber: "0",
   operation: null,
 };
 

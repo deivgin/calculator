@@ -20,28 +20,36 @@ const Calculator = () => {
     console.log(state);
   }, [state]);
 
-  const setOperand = (num: number) => {
+  const chooseOperand = (num: number) => {
+    setState((prevState) => ({
+      ...prevState,
+      mainNumber:
+        state.mainNumber === "0"
+          ? num.toString()
+          : state.mainNumber + num.toString(),
+    }));
+  };
+
+  const setOperand = () => {
     if (state.operation === null) {
       setState((prevState) => ({
         ...prevState,
-        firstOperand:
-          state.firstOperand === "0"
-            ? num.toString()
-            : state.firstOperand + num.toString(),
+        firstOperand: state.mainNumber,
       }));
     } else {
       setState((prevState) => ({
         ...prevState,
-        secondOperand:
-          state.secondOperand === "0"
-            ? num.toString()
-            : state.secondOperand + num.toString(),
+        secondOperand: state.mainNumber,
       }));
     }
   };
 
   const chooseOperator = (operator: Operator) => {
-    setState((prevState) => ({ ...prevState, operation: operator }));
+    setOperand();
+    setState((prevState) => ({
+      ...prevState,
+      operation: operator,
+    }));
   };
 
   const reset = () => {
@@ -52,6 +60,7 @@ const Calculator = () => {
     const firstNum = parseInt(state.firstOperand);
     const secondNum = parseInt(state.secondOperand);
     let answer = 0;
+
     if (state.operation === "×") {
       answer = firstNum * secondNum;
     } else if (state.operation === "+") {
@@ -61,10 +70,9 @@ const Calculator = () => {
     } else if (state.operation === "÷") {
       answer = firstNum / secondNum;
     }
-
     setState((prevState) => ({
       ...prevState,
-      firstOperand: answer.toString(),
+      mainNumber: answer.toString(),
     }));
   };
 
@@ -75,12 +83,13 @@ const Calculator = () => {
         firstOperand={state.firstOperand}
         operation={state.operation}
         secondOperand={state.secondOperand}
+        mainNumber={state.mainNumber}
       />
       <Pad
         numbers={numbers}
         actions={actions}
         operations={operations}
-        setOperand={setOperand}
+        chooseOperand={chooseOperand}
         chooseOperator={chooseOperator}
         reset={reset}
         calculate={calculate}

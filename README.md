@@ -19,13 +19,12 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 
 ## Current plan:
 
-- generate different buttons based on its type
 - create basic functionality
--
+- Figure out how to show full expression after calculating
+- Add float values
+- only allow to type "." once
 
 ## Needs fixing:
 
 - Grid system is wack, beed to make it look like an actual pad
 - Create overflow check to hide numbers when they leave screen's box;
-- after pressing = the screen should show anws
-- currently the top shows second operator first, it should show first operand first
