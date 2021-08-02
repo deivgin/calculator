@@ -1,6 +1,6 @@
 import Screen from "./components/Screen";
 import Pad from "./components/Pad";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Operand,
   Operator,
@@ -15,6 +15,10 @@ const operations: Operator[] = ["×", "÷", "-", "+"];
 
 const Calculator = () => {
   const [state, setState] = useState<State>(initialState);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
 
   const setFirstOperand = (num: Operand) => {
     if (state.firstOperand === "0") {
@@ -36,7 +40,7 @@ const Calculator = () => {
   };
 
   const chooseOperator = (operator: Operator) => {
-    state.secondOperand !== "0" ? setSecondOperand() : null;
+    state.secondOperand === "" ? setSecondOperand() : null;
 
     switch (operator) {
       case "×":
@@ -59,11 +63,26 @@ const Calculator = () => {
     setState(initialState);
   };
 
+  const calculate = () => {
+    const firstNum = parseInt(state.firstOperand);
+    const secondNum = parseInt(state.secondOperand);
+    let answer: number;
+    if (state.operation === "×") {
+      answer = firstNum * secondNum;
+    } else if (state.operation === "+") {
+      answer = firstNum + secondNum;
+    } else if (state.operation === "-") {
+      answer = secondNum - firstNum;
+    } else if (state.operation === "÷") {
+      answer = secondNum / firstNum;
+    }
+  };
+
   return (
     <div className="calculator">
       <h1 className="calculator__name">Calculator name</h1>
       <Screen
-        mainScreen={state.firstOperand}
+        firstOperand={state.firstOperand}
         operation={state.operation}
         secondOperand={state.secondOperand}
       />
@@ -74,6 +93,7 @@ const Calculator = () => {
         setFirstOperand={setFirstOperand}
         chooseOperator={chooseOperator}
         reset={reset}
+        calculate={calculate}
       />
     </div>
   );

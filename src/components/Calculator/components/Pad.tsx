@@ -1,6 +1,6 @@
 import NumberButton from "./NumberButton";
 import ActionButton from "./ActionButton";
-import OperationButton from "./Operationbutton";
+import OperationButton from "./OperationButton";
 import { Operand, Operator, Action } from "./model";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
   setFirstOperand: (num: Operand) => void;
   chooseOperator: (operator: Operator) => void;
   reset: () => void;
+  calculate: () => void;
 }
 
 const Pad: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const Pad: React.FC<Props> = ({
   setFirstOperand,
   chooseOperator,
   reset,
+  calculate,
 }) => {
   return (
     <div className="pad">
@@ -36,7 +38,7 @@ const Pad: React.FC<Props> = ({
           />
         ))}
       </div>
-      <ActionButton char="=" type="equal" />
+      <ActionButton char="=" type="equal" onClick={calculate} />
       <ActionButton char="AC" type="reset" onClick={reset} />
       <ActionButton char="C" type="delete" />
       <ActionButton char="." type="dot" />

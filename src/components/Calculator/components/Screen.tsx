@@ -1,19 +1,24 @@
 import { Operator } from "./model";
 
 interface Props {
-  mainScreen: string;
+  firstOperand: string;
   operation: Operator | null;
   secondOperand: string | null;
 }
 
-const Screen: React.FC<Props> = ({ mainScreen, operation, secondOperand }) => {
+const Screen: React.FC<Props> = ({
+  firstOperand,
+  operation,
+  secondOperand,
+}) => {
   return (
     <div className="calculator__screen">
-      <div className="calculation">
-        {secondOperand}
+      <div className="calculation"></div>
+      <div className="number">
+        {firstOperand}
         {operation}
+        {secondOperand}
       </div>
-      <div className="number">{mainScreen}</div>
     </div>
   );
 };

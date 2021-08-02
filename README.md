@@ -21,8 +21,11 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 
 - generate different buttons based on its type
 - create basic functionality
+-
 
 ## Needs fixing:
 
 - Grid system is wack, beed to make it look like an actual pad
 - Create overflow check to hide numbers when they leave screen's box;
+- after pressing = the screen should show anws
+- currently the top shows second operator first, it should show first operand first
