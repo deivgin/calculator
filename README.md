@@ -17,14 +17,9 @@ App whose purpose is to practice react and typescript
 
 P.S. You are free to refactor existing code, change the design or add any new features! And remember - quality over quantity! Good luck :)
 
-## Current plan:
-
-- create basic functionality
-- Figure out how to show full expression after calculating
-- Add float values
-- only allow to type "." once
-
 ## Needs fixing:
 
 - Grid system is wack, beed to make it look like an actual pad
 - Create overflow check to hide numbers when they leave screen's box;
+- After answer reset calculator
+- Add delete functionality
