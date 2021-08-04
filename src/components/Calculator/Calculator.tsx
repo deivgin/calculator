@@ -15,6 +15,7 @@ const operations: Operator[] = ["×", "÷", "-", "+"];
 
 const Calculator = () => {
   const [state, setState] = useState<State>(initialState);
+  const { prevOperand, currOperand, operation } = state;
 
   useEffect(() => {
     console.log(state);
@@ -23,67 +24,74 @@ const Calculator = () => {
   const chooseOperand = (num: number) => {
     setState((prevState) => ({
       ...prevState,
-      mainNumber:
-        state.mainNumber === "0"
-          ? num.toString()
-          : state.mainNumber + num.toString(),
+      currOperand: currOperand + num.toString(),
     }));
   };
 
-  const setOperand = () => {
-    if (state.operation === null) {
-      setState((prevState) => ({
-        ...prevState,
-        firstOperand: state.mainNumber,
-      }));
-    } else {
-      setState((prevState) => ({
-        ...prevState,
-        secondOperand: state.mainNumber,
-      }));
-    }
+  const addDot = () => {
+    setState((prevState) => ({
+      ...prevState,
+      currOperand: currOperand.includes(".") ? currOperand : currOperand + ".",
+    }));
   };
 
   const chooseOperator = (operator: Operator) => {
-    setOperand();
     setState((prevState) => ({
       ...prevState,
       operation: operator,
+      prevOperand: currOperand,
+      currOperand: "",
     }));
+    calculate();
+  };
+
+  const calculate = () => {
+    if (operation === "+") {
+      let answer = parseFloat(prevOperand) + parseFloat(currOperand);
+      setState((prevState) => ({
+        ...prevState,
+        currOperand: answer.toString(),
+        prevOperand: "",
+        operation: null,
+      }));
+    } else if (operation === "-") {
+      let answer = parseFloat(prevOperand) - parseFloat(currOperand);
+      setState((prevState) => ({
+        ...prevState,
+        currOperand: answer.toString(),
+        prevOperand: "",
+        operation: null,
+      }));
+    } else if (operation === "÷") {
+      let answer = parseFloat(prevOperand) / parseFloat(currOperand);
+      setState((prevState) => ({
+        ...prevState,
+        currOperand: answer.toString(),
+        prevOperand: "",
+        operation: null,
+      }));
+    } else if (operation === "×") {
+      let answer = parseFloat(prevOperand) * parseFloat(currOperand);
+      setState((prevState) => ({
+        ...prevState,
+        currOperand: answer.toString(),
+        prevOperand: "",
+        operation: null,
+      }));
+    }
   };
 
   const reset = () => {
     setState(initialState);
   };
 
-  const calculate = () => {
-    const firstNum = parseInt(state.firstOperand);
-    const secondNum = parseInt(state.secondOperand);
-    let answer = 0;
-
-    if (state.operation === "×") {
-      answer = firstNum * secondNum;
-    } else if (state.operation === "+") {
-      answer = firstNum + secondNum;
-    } else if (state.operation === "-") {
-      answer = firstNum - secondNum;
-    } else if (state.operation === "÷") {
-      answer = firstNum / secondNum;
-    }
-    setState((prevState) => ({
-      ...prevState,
-      mainNumber: answer.toString(),
-    }));
-  };
-
   return (
     <div className="calculator">
       <h1 className="calculator__name">Calculator name</h1>
       <Screen
-        firstOperand={state.firstOperand}
-        operation={state.operation}
-        secondOperand={state.secondOperand}
-        mainNumber={state.mainNumber}
+        prevOperand={prevOperand}
+        currOperand={currOperand}
+        operation={operation}
       />
       <Pad
         numbers={numbers}
@@ -93,6 +101,7 @@ const Calculator = () => {
         chooseOperator={chooseOperator}
         reset={reset}
         calculate={calculate}
+        addDot={addDot}
       />
     </div>
   );
