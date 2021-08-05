@@ -19,14 +19,16 @@ const Calculator = () => {
   const { prevOperand, currOperand, operation, isCalculated, calcName } = state;
 
   useEffect(() => {
-    //setState(initialState);
-    console.log(state);
+    setState({ ...initialState, calcName: calcName });
   }, [calcName]);
 
   const chooseOperand = (num: number) => {
     setState((prevState) => ({
       ...prevState,
-      currOperand: isCalculated ? num.toString() : currOperand + num.toString(),
+      currOperand:
+        isCalculated || currOperand === prevOperand
+          ? num.toString()
+          : currOperand + num.toString(),
       isCalculated: isCalculated && false,
     }));
   };
@@ -43,7 +45,6 @@ const Calculator = () => {
       ...prevState,
       operation: operator,
       prevOperand: currOperand,
-      currOperand: "",
     }));
     calculate();
   };
@@ -99,10 +100,10 @@ const Calculator = () => {
     }));
   };
 
-  const changeCalcName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const changeCalcName = (value: string) => {
     setState((prevState) => ({
       ...prevState,
-      calcName: e.target.value,
+      calcName: value,
     }));
   };
 
