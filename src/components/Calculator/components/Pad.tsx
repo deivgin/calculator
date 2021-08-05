@@ -12,17 +12,18 @@ interface Props {
   reset: () => void;
   calculate: () => void;
   addDot: () => void;
+  deleteCharacter: () => void;
 }
 
 const Pad: React.FC<Props> = ({
   numbers,
   operations,
-  actions,
   chooseOperand,
   chooseOperator,
   reset,
   calculate,
   addDot,
+  deleteCharacter,
 }) => {
   return (
     <div className="pad">
@@ -42,7 +43,7 @@ const Pad: React.FC<Props> = ({
       </div>
       <ActionButton char="=" type="equal" onClick={calculate} />
       <ActionButton char="AC" type="reset" onClick={reset} />
-      <ActionButton char="C" type="delete" />
+      <ActionButton char="C" type="delete" onClick={deleteCharacter} />
       <ActionButton char="." type="dot" onClick={addDot} />
     </div>
   );

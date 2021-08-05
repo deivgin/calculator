@@ -1,7 +1,8 @@
-import { Operator } from "./model";
 import { State } from "./model";
 
-const Screen: React.FC<State> = ({ prevOperand, currOperand, operation }) => {
+type Props = Omit<State, "isCalculated" | "calcName">;
+
+const Screen: React.FC<Props> = ({ prevOperand, currOperand, operation }) => {
   return (
     <div className="calculator__screen">
       <div className="calculation">

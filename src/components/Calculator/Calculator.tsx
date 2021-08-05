@@ -1,6 +1,7 @@
 import Screen from "./components/Screen";
 import Pad from "./components/Pad";
-import { useEffect, useState } from "react";
+import CalculatorName from "./components/CalculatorName";
+import React, { useEffect, useState } from "react";
 import {
   Operand,
   Operator,
@@ -15,16 +16,18 @@ const operations: Operator[] = ["×", "÷", "-", "+"];
 
 const Calculator = () => {
   const [state, setState] = useState<State>(initialState);
-  const { prevOperand, currOperand, operation } = state;
+  const { prevOperand, currOperand, operation, isCalculated, calcName } = state;
 
   useEffect(() => {
+    //setState(initialState);
     console.log(state);
-  }, [state]);
+  }, [calcName]);
 
   const chooseOperand = (num: number) => {
     setState((prevState) => ({
       ...prevState,
-      currOperand: currOperand + num.toString(),
+      currOperand: isCalculated ? num.toString() : currOperand + num.toString(),
+      isCalculated: isCalculated && false,
     }));
   };
 
@@ -53,6 +56,7 @@ const Calculator = () => {
         currOperand: answer.toString(),
         prevOperand: "",
         operation: null,
+        isCalculated: true,
       }));
     } else if (operation === "-") {
       let answer = parseFloat(prevOperand) - parseFloat(currOperand);
@@ -61,6 +65,7 @@ const Calculator = () => {
         currOperand: answer.toString(),
         prevOperand: "",
         operation: null,
+        isCalculated: true,
       }));
     } else if (operation === "÷") {
       let answer = parseFloat(prevOperand) / parseFloat(currOperand);
@@ -69,6 +74,7 @@ const Calculator = () => {
         currOperand: answer.toString(),
         prevOperand: "",
         operation: null,
+        isCalculated: true,
       }));
     } else if (operation === "×") {
       let answer = parseFloat(prevOperand) * parseFloat(currOperand);
@@ -77,6 +83,7 @@ const Calculator = () => {
         currOperand: answer.toString(),
         prevOperand: "",
         operation: null,
+        isCalculated: true,
       }));
     }
   };
@@ -85,9 +92,23 @@ const Calculator = () => {
     setState(initialState);
   };
 
+  const deleteCharacter = () => {
+    setState((prevState) => ({
+      ...prevState,
+      currOperand: currOperand.slice(0, -1),
+    }));
+  };
+
+  const changeCalcName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setState((prevState) => ({
+      ...prevState,
+      calcName: e.target.value,
+    }));
+  };
+
   return (
     <div className="calculator">
-      <h1 className="calculator__name">Calculator name</h1>
+      <CalculatorName calcName={calcName} changeCalcName={changeCalcName} />
       <Screen
         prevOperand={prevOperand}
         currOperand={currOperand}
@@ -102,6 +123,7 @@ const Calculator = () => {
         reset={reset}
         calculate={calculate}
         addDot={addDot}
+        deleteCharacter={deleteCharacter}
       />
     </div>
   );

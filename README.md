@@ -23,3 +23,4 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 - Create overflow check to hide numbers when they leave screen's box;
 - After answer reset calculator
 - Add delete functionality
+- hasCalculated
