@@ -24,3 +24,4 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 - when pressing 0 on initialState nothing happens
 - after pressing /\*-+ second time it should automatically start a new calc line (prevNum + )
 - add responsive design( that in mobile view it takes 100% of screen width)
+- add type to button function (onClick)

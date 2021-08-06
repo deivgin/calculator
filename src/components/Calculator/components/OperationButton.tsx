@@ -8,7 +8,7 @@ interface Props {
 const OperationButton: React.FC<Props> = ({ operation, onClick }) => {
   return (
     <button
-      className="calculator__button calculator__button-operation"
+      className="calculator__button calculator__button--operation"
       onClick={() => onClick(operation)}
     >
       {operation}

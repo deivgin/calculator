@@ -9,7 +9,7 @@ interface Props {
 const ActionButton: React.FC<Props> = ({ char, type, onClick }) => {
   return (
     <button
-      className={`calculator__button pad__actions--${type}`}
+      className={`calculator__button actions--${type}`}
       onClick={() => onClick()}
     >
       {char}

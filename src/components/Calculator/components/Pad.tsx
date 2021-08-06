@@ -26,21 +26,18 @@ const Pad: React.FC<Props> = ({
   deleteCharacter,
 }) => {
   return (
-    <div className="pad">
-      <div className="pad__numbers">
-        {numbers.map((number, index) => (
-          <NumberButton key={index} number={number} onClick={chooseOperand} />
-        ))}
-      </div>
-      <div className="pad__operators">
-        {operations.map((operation, index) => (
-          <OperationButton
-            key={index}
-            operation={operation}
-            onClick={chooseOperator}
-          />
-        ))}
-      </div>
+    <div className="calculator__pad">
+      {numbers.map((number, index) => (
+        <NumberButton key={index} number={number} onClick={chooseOperand} />
+      ))}
+
+      {operations.map((operation, index) => (
+        <OperationButton
+          key={index}
+          operation={operation}
+          onClick={chooseOperator}
+        />
+      ))}
       <ActionButton char="=" type="equal" onClick={calculate} />
       <ActionButton char="AC" type="reset" onClick={reset} />
       <ActionButton char="C" type="delete" onClick={deleteCharacter} />

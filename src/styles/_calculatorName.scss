@@ -5,13 +5,13 @@
     color: var(--colorBlack);
     border: none;
     text-align: center;
-    font-size: var(--fontSizeMD);
+    font-size: var(--fontSizeSM);
+    margin-bottom: 5rem;
     &:focus {
       outline: none;
     }
-
-    button {
-      display: none;
-    }
+  }
+  button {
+    display: none;
   }
 }
