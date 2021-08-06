@@ -1,7 +1,7 @@
 import Screen from "./components/Screen";
 import Pad from "./components/Pad";
 import CalculatorName from "./components/CalculatorName";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Operand,
   Operator,
@@ -23,12 +23,10 @@ const Calculator = () => {
   }, [calcName]);
 
   const chooseOperand = (num: number) => {
+    if (currOperand.length === 0 && num === 0) return;
     setState((prevState) => ({
       ...prevState,
-      currOperand:
-        isCalculated || currOperand === prevOperand
-          ? num.toString()
-          : currOperand + num.toString(),
+      currOperand: isCalculated ? num.toString() : currOperand + num.toString(),
       isCalculated: isCalculated && false,
     }));
   };
@@ -41,15 +39,21 @@ const Calculator = () => {
   };
 
   const chooseOperator = (operator: Operator) => {
+    let operand = currOperand;
+    if (prevOperand === "" && currOperand === "") return;
+    if (operand.slice(0) === ".") operand = "0" + operand;
+    if (operand.slice(-1) === ".") operand = operand.slice(0, -1);
     setState((prevState) => ({
       ...prevState,
       operation: operator,
-      prevOperand: currOperand,
+      prevOperand: operand === "" ? prevOperand : operand,
+      currOperand: "",
     }));
     calculate();
   };
 
   const calculate = () => {
+    if (currOperand === "" || prevOperand === "" || currOperand === ".") return;
     if (operation === "+") {
       let answer = parseFloat(prevOperand) + parseFloat(currOperand);
       setState((prevState) => ({
