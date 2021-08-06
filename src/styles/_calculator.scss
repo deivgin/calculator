@@ -1,35 +1,56 @@
 .calculator {
-  border: solid 2px #000;
-  width: 50rem;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--colorDark);
+  border-radius: 3rem;
+  padding: 2rem 5rem;
   &__name {
     font-size: 4rem;
     text-align: center;
   }
 
   &__button {
-    background-color: inherit;
-    border: solid 0.2rem #000;
+    background-color: var(--colorGreyLight);
+    color: var(--colorPrimary);
+    border: none;
+    border-radius: 50%;
     font-size: 3rem;
     width: var(--buttonSize);
     height: var(--buttonSize);
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-    }
+    box-shadow: 0 0.6rem 0.4rem rgb(0, 0, 0, 0.25);
+    transition: all 0.2s;
+    cursor: pointer;
+
     &:active {
-      transform: scale(1);
+      transform: translateY(1);
+      box-shadow: 0 0.4rem 0.4rem rgb(0, 0, 0, 0.25);
     }
   }
 
   &__screen {
+    color: var(--colorPrimary);
+    background-color: var(--colorGrey);
+    width: 40rem;
+    height: 15rem;
+    margin-bottom: 5rem;
+    margin-top: 10rem;
+    border-radius: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-shadow: inset 0 0.6rem 0.4rem rgb(0, 0, 0, 0.25);
     .calculation {
       font-size: 2rem;
+      margin-right: 2rem;
+      color: var(--colorGreyLight);
     }
 
     .number {
       text-align: center;
       font-size: 8rem;
+      margin-right: 2rem;
     }
   }
 }

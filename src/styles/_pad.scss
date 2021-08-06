@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: repeat(4, var(--buttonSize));
   grid-template-rows: repeat(5, var(--buttonSize));
+  gap: 2.5rem;
   &__numbers {
     grid-column: 1/4;
     grid-row: 2/6;
@@ -16,9 +17,8 @@
 
   &__actions {
     &--equal {
-      grid-column: 3/5;
+      grid-column: 3/4;
       grid-row: 5/6;
-      width: calc(2 * var(--buttonSize));
     }
 
     &--dot {

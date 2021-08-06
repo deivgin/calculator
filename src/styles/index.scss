@@ -1,7 +1,8 @@
 @use './calculator';
 @use './variables';
 @use './pad';
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@use './calculatorName';
+@import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
 
 * {
   margin: 0;
@@ -12,7 +13,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Sen", sans-serif;
   box-sizing: border-box;
 }
 

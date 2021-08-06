@@ -1,0 +1,18 @@
+.calculator__name {
+  margin: 1rem;
+  input {
+    width: 100%;
+    font-size: 2rem;
+    border: none;
+    text-align: center;
+    background-color: inherit;
+    color: var(--colorPrimary);
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    display: none;
+  }
+}
