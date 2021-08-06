@@ -1,0 +1,17 @@
+.calculator__screen {
+  border-radius: 3rem;
+  box-shadow: inset 0 0.4rem 0.5rem 0.1rem rgb(0, 0, 0, 0.5);
+  text-align: end;
+  .calculation {
+    font-size: var(--fontSizeSM);
+    padding-top: 2rem;
+    margin-right: 1rem;
+    height: 2rem;
+  }
+
+  .number {
+    font-size: var(--fontSizeBG);
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+  }
+}

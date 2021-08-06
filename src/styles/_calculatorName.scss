@@ -1,18 +1,17 @@
 .calculator__name {
-  margin: 1rem;
   input {
     width: 100%;
-    font-size: 2rem;
+    background-color: inherit;
+    color: var(--colorBlack);
     border: none;
     text-align: center;
-    background-color: inherit;
-    color: var(--colorPrimary);
+    font-size: var(--fontSizeMD);
     &:focus {
       outline: none;
     }
-  }
 
-  button {
-    display: none;
+    button {
+      display: none;
+    }
   }
 }

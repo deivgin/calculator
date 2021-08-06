@@ -1,8 +1,12 @@
-import Calculator from './Calculator/Calculator';
-import '../styles/index.scss'
+import Calculator from "./Calculator/Calculator";
+import "../styles/index.scss";
 
 const App = () => {
-    return <div className="app"><Calculator /></div>
-}
+  return (
+    <>
+      <Calculator />
+    </>
+  );
+};
 
 export default App;
