@@ -10,3 +10,9 @@
     box-shadow: none;
   }
 }
+
+@media only screen and (max-width: 320px) {
+  .calculator {
+    padding: 0;
+  }
+}
