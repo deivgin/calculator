@@ -15,7 +15,9 @@ const ScalingText: React.FC<Props> = ({ operand }) => {
     let currScale = 0;
     if (textWidth) currScale = parentWidth / textWidth;
     if (currScale === 0 || currScale === scale) return;
-    if (currScale < 1) setScale(currScale);
+    if (currScale < 1) {
+      setScale(currScale);
+    } else if (scale < 1) setScale(1);
   }, [operand]);
 
   return (
