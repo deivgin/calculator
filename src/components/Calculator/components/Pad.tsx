@@ -38,6 +38,7 @@ const Pad: React.FC<Props> = ({
           onClick={chooseOperator}
         />
       ))}
+
       <ActionButton char="=" type="equal" onClick={calculate} />
       <ActionButton char="AC" type="reset" onClick={reset} />
       <ActionButton char="C" type="delete" onClick={deleteCharacter} />

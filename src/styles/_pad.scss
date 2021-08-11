@@ -2,6 +2,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  column-gap: 2rem;
+  row-gap: 2rem;
+  grid-template-areas:
+    "reset . . divide"
+    "seven eight nine multiply"
+    "four five six minus"
+    "three two one plus"
+    "delete zero dot equal";
 }
 
 .calculator__button {
@@ -16,5 +24,71 @@
   transition: all 0.1s;
   &:active {
     transform: translateY(1px);
+  }
+}
+
+.pad__numbers {
+  &--0 {
+    grid-area: zero;
+  }
+  &--1 {
+    grid-area: one;
+  }
+  &--2 {
+    grid-area: two;
+  }
+  &--3 {
+    grid-area: three;
+  }
+  &--4 {
+    grid-area: four;
+  }
+  &--5 {
+    grid-area: five;
+  }
+  &--6 {
+    grid-area: six;
+  }
+  &--7 {
+    grid-area: seven;
+  }
+  &--8 {
+    grid-area: eight;
+  }
+  &--9 {
+    grid-area: nine;
+  }
+}
+
+.pad__operations {
+  &--plus {
+    grid-area: plus;
+  }
+  &--minus {
+    grid-area: minus;
+  }
+  &--divide {
+    grid-area: divide;
+  }
+  &--multiply {
+    grid-area: multiply;
+  }
+}
+
+.actions {
+  &--equal {
+    grid-area: equal;
+  }
+
+  &--reset {
+    grid-area: reset;
+  }
+
+  &--delete {
+    grid-area: delete;
+  }
+
+  &--dot {
+    grid-area: dot;
   }
 }

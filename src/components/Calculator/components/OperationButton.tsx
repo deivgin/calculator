@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Operator } from "./model";
 
 interface Props {
@@ -6,9 +7,26 @@ interface Props {
 }
 
 const OperationButton: React.FC<Props> = ({ operation, onClick }) => {
+  const [str, setStr] = useState("");
+  useEffect(() => {
+    switch (operation) {
+      case "+":
+        setStr("plus");
+        break;
+      case "-":
+        setStr("minus");
+        break;
+      case "÷":
+        setStr("divide");
+        break;
+      case "×":
+        setStr("multiply");
+        break;
+    }
+  }, []);
   return (
     <button
-      className="calculator__button calculator__button--operation"
+      className={`calculator__button pad__operations--${str}`}
       onClick={() => onClick(operation)}
     >
       {operation}
