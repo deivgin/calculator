@@ -25,4 +25,3 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 - add responsive design( that in mobile view it takes 100% of screen width)
 - add type to button function (onClick)
 - when you have calculated string C does not work
-- currently when ScalingText component fires rerender after the string is added, so a flicker is seen when adding numbers

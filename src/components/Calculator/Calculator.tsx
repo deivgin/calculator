@@ -23,7 +23,8 @@ const Calculator = () => {
   }, [calcName]);
 
   const chooseOperand = (num: number) => {
-    if (currOperand.length === 0 && num === 0) return;
+    if ((currOperand.length === 0 && num === 0) || currOperand.length > 18)
+      return;
     setState((prevState) => ({
       ...prevState,
       currOperand: isCalculated ? num.toString() : currOperand + num.toString(),
