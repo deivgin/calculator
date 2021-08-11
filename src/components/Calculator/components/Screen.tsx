@@ -1,4 +1,5 @@
 import { State } from "./model";
+import ScalingText from "./ScalingText";
 
 type Props = Omit<State, "isCalculated" | "calcName">;
 
@@ -10,10 +11,14 @@ const Screen: React.FC<Props> = ({ prevOperand, currOperand, operation }) => {
         {operation}
       </div>
       <div className="number">
-        {currOperand.length === 0 && prevOperand.length === 0
-          ? "0"
-          : currOperand}
-        {prevOperand.length > 0 && currOperand.length === 0 && prevOperand}
+        {currOperand.length === 0 && prevOperand.length === 0 ? (
+          "0"
+        ) : (
+          <ScalingText operand={currOperand} />
+        )}
+        {prevOperand.length > 0 && currOperand.length === 0 && (
+          <ScalingText operand={prevOperand} />
+        )}
       </div>
     </div>
   );
