@@ -12,7 +12,9 @@
   width: var(--buttonSize);
   height: var(--buttonSize);
   box-shadow: 0 0.4rem 0.4rem rgb(0, 0, 0, 0.25);
-}
-
-.actions {
+  cursor: pointer;
+  transition: all 0.1s;
+  &:active {
+    transform: translateY(1px);
+  }
 }
