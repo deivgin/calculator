@@ -5,9 +5,9 @@ interface Props {
   changeCalcName: (value: string) => void;
 }
 
-const CalculatorName: React.FC<Props> = ({ changeCalcName }) => {
+const CalculatorName: React.FC<Props> = ({ calcName, changeCalcName }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useState("Calculator");
+  const [value, setValue] = useState(calcName);
   return (
     <form
       className="calculator__name"

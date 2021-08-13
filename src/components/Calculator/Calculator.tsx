@@ -10,6 +10,7 @@ import {
   State,
   initialState,
 } from "./components/model";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const actions: Action[] = ["=", "C", "."];
 const numbers: Operand[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -17,11 +18,15 @@ const operations: Operator[] = ["×", "÷", "-", "+"];
 
 const Calculator = () => {
   const [state, setState] = useState<State>(initialState);
-  const { prevOperand, currOperand, operation, isCalculated, calcName } = state;
+  const { prevOperand, currOperand, operation, isCalculated } = state;
+  const [storedName, setStoredName] = useLocalStorage(
+    "calculator_name",
+    "Calculator"
+  );
 
   useEffect(() => {
-    setState({ ...initialState, calcName: calcName });
-  }, [calcName]);
+    setState({ ...initialState });
+  }, [storedName]);
 
   const chooseOperand = (num: number) => {
     if ((currOperand.length === 0 && num === 0) || currOperand.length > 21)
@@ -108,16 +113,13 @@ const Calculator = () => {
   };
 
   const changeCalcName = (value: string) => {
-    setState((prevState) => ({
-      ...prevState,
-      calcName: value,
-    }));
+    setStoredName(value);
   };
 
   return (
     <div className="calculator">
       <ThemeChanger />
-      <CalculatorName calcName={calcName} changeCalcName={changeCalcName} />
+      <CalculatorName calcName={storedName} changeCalcName={changeCalcName} />
       <Screen
         prevOperand={prevOperand}
         currOperand={currOperand}

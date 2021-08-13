@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const ThemeChanger = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [theme, setThemeMode] = useLocalStorage("mode_dark", "dark");
 
   useEffect(() => {
-    darkMode
+    theme === "dark"
       ? document.querySelector(".calculator")?.classList.add("dark-mode")
       : document.querySelector(".calculator")?.classList.remove("dark-mode");
-  }, [darkMode]);
+  }, [theme]);
 
   return (
-    <button className="theme-changer" onClick={() => setDarkMode(!darkMode)}>
-      {darkMode ? <div>&#9788;</div> : <div>&#9789;</div>}
+    <button
+      className="theme-changer"
+      onClick={() => {
+        if (theme === "light") {
+          setThemeMode("dark");
+        } else if (theme === "dark") {
+          setThemeMode("light");
+        }
+      }}
+    >
+      {theme === "dark" ? <div>&#9788;</div> : <div>&#9789;</div>}
     </button>
   );
 };
