@@ -2,7 +2,8 @@
 @use './pad';
 @use './calculatorName';
 @use './screen';
-@use 'calculator';
+@use './calculator';
+@use './darkMode';
 @import url("https://fonts.googleapis.com/css2?family=Sen&display=swap");
 
 * {

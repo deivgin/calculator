@@ -1,6 +1,7 @@
 import Screen from "./components/Screen";
 import Pad from "./components/Pad";
 import CalculatorName from "./components/CalculatorName";
+import ThemeChanger from "./components/ThemeChanger";
 import { useEffect, useState } from "react";
 import {
   Operand,
@@ -115,6 +116,7 @@ const Calculator = () => {
 
   return (
     <div className="calculator">
+      <ThemeChanger />
       <CalculatorName calcName={calcName} changeCalcName={changeCalcName} />
       <Screen
         prevOperand={prevOperand}

@@ -24,3 +24,4 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 - theme changer
 - fix variable namings so that every variable has the same name (like operation, opertor ar the same thing but are called differently)
 - add minus functionality
+- add local storage

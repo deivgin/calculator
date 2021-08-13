@@ -1,0 +1,30 @@
+.theme-changer {
+  font-size: var(--fontSizeMD);
+  border: none;
+  width: 4rem;
+  height: 4rem;
+  background-color: inherit;
+  color: inherit;
+}
+
+.calculator.dark-mode {
+  background-color: var(--colorDark);
+}
+
+.dark-mode {
+  color: var(--colorPrimary);
+  .calculator__pad {
+    button {
+      background-color: var(--colorGrey);
+    }
+  }
+  .calculator__screen {
+    background-color: var(--colorGreyLight);
+    .number {
+      color: var(--colorPrimary);
+    }
+    .calculation {
+      color: var(--colorDark);
+    }
+  }
+}

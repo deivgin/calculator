@@ -15,6 +15,7 @@
 .calculator__button {
   font-size: var(--fontSizeMD);
   background-color: #fff;
+  color: inherit;
   border: none;
   border-radius: 50%;
   width: var(--buttonSize);
