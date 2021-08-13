@@ -41,16 +41,17 @@ const Calculator = () => {
 
   const chooseOperator = (operator: Operator) => {
     let operand = currOperand;
-    if (prevOperand === "" && currOperand === "") return;
-    if (operand.slice(0) === ".") operand = "0" + operand;
+    if (prevOperand && currOperand) return;
+    if (prevOperand === "" && currOperand === "") operand = "0";
+    if (operand.slice(0, 1) === ".") operand = "0" + operand;
     if (operand.slice(-1) === ".") operand = operand.slice(0, -1);
+
     setState((prevState) => ({
       ...prevState,
       operation: operator,
       prevOperand: operand === "" ? prevOperand : operand,
       currOperand: "",
     }));
-    calculate();
   };
 
   const calculate = () => {

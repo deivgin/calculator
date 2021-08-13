@@ -19,11 +19,8 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 
 ## Needs fixing:
 
-- when pressing 0 on initialState nothing happens
 - after pressing /\*-+ second time it should automatically start a new calc line (prevNum + )
-- add responsive design( that in mobile view it takes 100% of screen width)
-- add type to button function (onClick)
-- when you have calculated string C does not work
 - would be cool to combine all button types into one button and change it based on its type
-- add color to the design
 - theme changer
+- fix variable namings so that every variable has the same name (like operation, opertor ar the same thing but are called differently)
+- add minus functionality
