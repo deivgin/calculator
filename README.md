@@ -1,5 +1,7 @@
 # calculator app
 
+## [Live preview](https://upbeat-chandrasekhar-98354c.netlify.app/)
+
 App whose purpose is to practice react and typescript
 
 ## Requirements:
