@@ -7,42 +7,42 @@ interface Props {
   numbers: Operand[];
   operations: Operator[];
   actions: Action[];
-  chooseOperand: (num: number) => void;
-  chooseOperator: (operator: Operator) => void;
-  reset: () => void;
-  calculate: () => void;
-  addDot: () => void;
-  deleteCharacter: () => void;
+  onChooseOperand: (num: number) => void;
+  onChooseOperator: (operator: Operator) => void;
+  onReset: () => void;
+  onCalculate: () => void;
+  onAddDot: () => void;
+  onDeleteCharacter: () => void;
 }
 
 const Pad: React.FC<Props> = ({
   numbers,
   operations,
-  chooseOperand,
-  chooseOperator,
-  reset,
-  calculate,
-  addDot,
-  deleteCharacter,
+  onChooseOperand,
+  onChooseOperator,
+  onReset,
+  onCalculate,
+  onAddDot,
+  onDeleteCharacter,
 }) => {
   return (
     <div className="calculator__pad">
-      {numbers.map((number, index) => (
-        <NumberButton key={index} number={number} onClick={chooseOperand} />
+      {numbers.map((number) => (
+        <NumberButton key={number} number={number} onClick={onChooseOperand} />
       ))}
 
-      {operations.map((operation, index) => (
+      {operations.map((operation) => (
         <OperationButton
-          key={index}
+          key={operation}
           operation={operation}
-          onClick={chooseOperator}
+          onClick={onChooseOperator}
         />
       ))}
 
-      <ActionButton char="=" type="equal" onClick={calculate} />
-      <ActionButton char="AC" type="reset" onClick={reset} />
-      <ActionButton char="C" type="delete" onClick={deleteCharacter} />
-      <ActionButton char="." type="dot" onClick={addDot} />
+      <ActionButton char="=" type="equal" onClick={onCalculate} />
+      <ActionButton char="AC" type="reset" onClick={onReset} />
+      <ActionButton char="C" type="delete" onClick={onDeleteCharacter} />
+      <ActionButton char="." type="dot" onClick={onAddDot} />
     </div>
   );
 };

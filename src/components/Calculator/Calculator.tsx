@@ -25,16 +25,19 @@ const Calculator = () => {
   );
 
   useEffect(() => {
-    setState({ ...initialState });
+    reset();
   }, [storedName]);
 
   const chooseOperand = (num: number) => {
-    if ((currOperand.length === 0 && num === 0) || currOperand.length > 21)
+    const writingDisabled =
+      (currOperand.length === 0 && num === 0) || currOperand.length > 21;
+    if (writingDisabled) {
       return;
+    }
     setState((prevState) => ({
       ...prevState,
       currOperand: isCalculated ? num.toString() : currOperand + num.toString(),
-      isCalculated: isCalculated && false,
+      isCalculated: false,
     }));
   };
 
@@ -62,43 +65,23 @@ const Calculator = () => {
 
   const calculate = () => {
     if (currOperand === "" || prevOperand === "" || currOperand === ".") return;
+    let answer = 0;
     if (operation === "+") {
-      let answer = parseFloat(prevOperand) + parseFloat(currOperand);
-      setState((prevState) => ({
-        ...prevState,
-        currOperand: answer.toString(),
-        prevOperand: "",
-        operation: null,
-        isCalculated: true,
-      }));
+      answer = parseFloat(prevOperand) + parseFloat(currOperand);
     } else if (operation === "-") {
-      let answer = parseFloat(prevOperand) - parseFloat(currOperand);
-      setState((prevState) => ({
-        ...prevState,
-        currOperand: answer.toString(),
-        prevOperand: "",
-        operation: null,
-        isCalculated: true,
-      }));
+      answer = parseFloat(prevOperand) - parseFloat(currOperand);
     } else if (operation === "÷") {
-      let answer = parseFloat(prevOperand) / parseFloat(currOperand);
-      setState((prevState) => ({
-        ...prevState,
-        currOperand: answer.toString(),
-        prevOperand: "",
-        operation: null,
-        isCalculated: true,
-      }));
+      answer = parseFloat(prevOperand) / parseFloat(currOperand);
     } else if (operation === "×") {
-      let answer = parseFloat(prevOperand) * parseFloat(currOperand);
-      setState((prevState) => ({
-        ...prevState,
-        currOperand: answer.toString(),
-        prevOperand: "",
-        operation: null,
-        isCalculated: true,
-      }));
+      answer = parseFloat(prevOperand) * parseFloat(currOperand);
     }
+
+    setState((prevState) => ({
+      ...prevState,
+      currOperand: answer.toString(),
+      prevOperand: "",
+      operation: null,
+    }));
   };
 
   const reset = () => {
@@ -119,7 +102,7 @@ const Calculator = () => {
   return (
     <div className="calculator">
       <ThemeChanger />
-      <CalculatorName calcName={storedName} changeCalcName={changeCalcName} />
+      <CalculatorName calcName={storedName} onChangeCalcName={changeCalcName} />
       <Screen
         prevOperand={prevOperand}
         currOperand={currOperand}
@@ -129,12 +112,12 @@ const Calculator = () => {
         numbers={numbers}
         actions={actions}
         operations={operations}
-        chooseOperand={chooseOperand}
-        chooseOperator={chooseOperator}
-        reset={reset}
-        calculate={calculate}
-        addDot={addDot}
-        deleteCharacter={deleteCharacter}
+        onChooseOperand={chooseOperand}
+        onChooseOperator={chooseOperator}
+        onReset={reset}
+        onCalculate={calculate}
+        onAddDot={addDot}
+        onDeleteCharacter={deleteCharacter}
       />
     </div>
   );

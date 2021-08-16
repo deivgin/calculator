@@ -3,7 +3,7 @@ import { Action } from "./model";
 interface Props {
   char: Action;
   type: "equal" | "reset" | "delete" | "dot";
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const ActionButton: React.FC<Props> = ({ char, type, onClick }) => {

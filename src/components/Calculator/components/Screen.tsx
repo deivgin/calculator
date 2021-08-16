@@ -1,7 +1,7 @@
 import { State } from "./model";
 import ScalingText from "./ScalingText";
 
-type Props = Omit<State, "isCalculated" | "calcName">;
+type Props = Omit<State, "calcName">;
 
 const Screen: React.FC<Props> = ({ prevOperand, currOperand, operation }) => {
   return (

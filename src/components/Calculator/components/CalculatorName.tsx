@@ -1,30 +1,23 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 interface Props {
   calcName: string;
-  changeCalcName: (value: string) => void;
+  onChangeCalcName: (value: string) => void;
 }
 
-const CalculatorName: React.FC<Props> = ({ calcName, changeCalcName }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+const CalculatorName: React.FC<Props> = ({ calcName, onChangeCalcName }) => {
   const [value, setValue] = useState(calcName);
   return (
-    <form
-      className="calculator__name"
-      onSubmit={(e) => {
-        e.preventDefault();
-        changeCalcName(value);
-        inputRef.current?.blur();
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onKeyPress={(e) => {
+        if (e.key === "Enter") {
+          onChangeCalcName(value);
+        }
       }}
-    >
-      <input
-        ref={inputRef}
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <button type="submit"></button>
-    </form>
+    />
   );
 };
 
