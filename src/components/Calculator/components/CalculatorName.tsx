@@ -15,7 +15,6 @@ const CalculatorName: React.FC<Props> = ({ calcName, changeCalcName }) => {
         e.preventDefault();
         changeCalcName(value);
         inputRef.current?.blur();
-        console.log("submited");
       }}
     >
       <input

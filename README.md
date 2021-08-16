@@ -23,3 +23,4 @@ P.S. You are free to refactor existing code, change the design or add any new fe
 - add minus functionality
 - create favicon
 - update readme after project is done (create a great looking readme that many projects have, add photos, features, etc.)
+- when in smaller screen the height is too large
