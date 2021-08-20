@@ -13,14 +13,16 @@ App whose purpose is to practice react and typescript
 - when in smaller screen the height is too large
 - PWA
 
-## Making it better
+## To Do
+
+- For theming use Context to transfer and switch the state
+- In Screen component create a new component from the number div
+- Clean up all the functions in useCalculator, they should be responsible only for one thing, if you can extract another function from it - do it.
+- Clean up the component folder structure, make it cleaner and with its own hooks, functions, models, etc.
+- Combine all the different buttons into one button element
+
+## Remember
 
 - All the numbers that are used and aren't clear what they mean, should be in a const
 - All of if checks should be in a const that is named on what it does
-- Create a function that checks all the cases and formats the string
-- For theming use Context to transfer and switch the state
-- use clsx for combining classes
-- In Screen component create a new component from the number div
-- create a useCalculator hook and transfer all the calculation data to it
-- Clean up the component folder structure, make it cleaner and with its own hooks, functions, models, etc.
 - All the places where you need some time to remember what it does should be in properly named functions or variables or constants.

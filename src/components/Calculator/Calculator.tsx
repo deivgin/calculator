@@ -2,102 +2,32 @@ import Screen from "./components/Screen";
 import Pad from "./components/Pad";
 import CalculatorName from "./components/CalculatorName";
 import ThemeChanger from "./components/ThemeChanger";
-import { useEffect, useState } from "react";
-import {
-  Operand,
-  Operator,
-  Action,
-  State,
-  initialState,
-} from "./components/model";
-import useLocalStorage from "./hooks/useLocalStorage";
+import { useEffect } from "react";
+import { Operand, Operator, Action } from "./components/model";
+import { useCalculator } from "./hooks/useCalculator";
 
 const actions: Action[] = ["=", "C", "."];
 const numbers: Operand[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const operations: Operator[] = ["×", "÷", "-", "+"];
 
 const Calculator = () => {
-  const [state, setState] = useState<State>(initialState);
-  const { prevOperand, currOperand, operation, isCalculated } = state;
-  const [storedName, setStoredName] = useLocalStorage(
-    "calculator_name",
-    "Calculator"
-  );
+  const {
+    prevOperand,
+    currOperand,
+    operation,
+    storedName,
+    chooseOperand,
+    chooseOperator,
+    addDot,
+    calculate,
+    reset,
+    deleteCharacter,
+    changeCalcName,
+  } = useCalculator();
 
   useEffect(() => {
     reset();
   }, [storedName]);
-
-  const chooseOperand = (num: number) => {
-    const writingDisabled =
-      (currOperand.length === 0 && num === 0) || currOperand.length > 21;
-    if (writingDisabled) {
-      return;
-    }
-    setState((prevState) => ({
-      ...prevState,
-      currOperand: isCalculated ? num.toString() : currOperand + num.toString(),
-      isCalculated: false,
-    }));
-  };
-
-  const addDot = () => {
-    setState((prevState) => ({
-      ...prevState,
-      currOperand: currOperand.includes(".") ? currOperand : currOperand + ".",
-    }));
-  };
-
-  const chooseOperator = (operator: Operator) => {
-    let operand = currOperand;
-    if (prevOperand && currOperand) return;
-    if (prevOperand === "" && currOperand === "") operand = "0";
-    if (operand.slice(0, 1) === ".") operand = "0" + operand;
-    if (operand.slice(-1) === ".") operand = operand.slice(0, -1);
-
-    setState((prevState) => ({
-      ...prevState,
-      operation: operator,
-      prevOperand: operand === "" ? prevOperand : operand,
-      currOperand: "",
-    }));
-  };
-
-  const calculate = () => {
-    if (currOperand === "" || prevOperand === "" || currOperand === ".") return;
-    let answer = 0;
-    if (operation === "+") {
-      answer = parseFloat(prevOperand) + parseFloat(currOperand);
-    } else if (operation === "-") {
-      answer = parseFloat(prevOperand) - parseFloat(currOperand);
-    } else if (operation === "÷") {
-      answer = parseFloat(prevOperand) / parseFloat(currOperand);
-    } else if (operation === "×") {
-      answer = parseFloat(prevOperand) * parseFloat(currOperand);
-    }
-
-    setState((prevState) => ({
-      ...prevState,
-      currOperand: answer.toString(),
-      prevOperand: "",
-      operation: null,
-    }));
-  };
-
-  const reset = () => {
-    setState(initialState);
-  };
-
-  const deleteCharacter = () => {
-    setState((prevState) => ({
-      ...prevState,
-      currOperand: currOperand.slice(0, -1),
-    }));
-  };
-
-  const changeCalcName = (value: string) => {
-    setStoredName(value);
-  };
 
   return (
     <div className="calculator">

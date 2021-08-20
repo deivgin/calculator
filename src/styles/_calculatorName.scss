@@ -1,17 +1,12 @@
 .calculator__name {
-  input {
-    width: 100%;
-    background-color: inherit;
-    color: inherit;
-    border: none;
-    text-align: center;
-    font-size: var(--fontSizeSM);
-    margin-bottom: 5rem;
-    &:focus {
-      outline: none;
-    }
-  }
-  button {
-    display: none;
+  width: 100%;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  text-align: center;
+  font-size: var(--fontSizeSM);
+  margin-bottom: 5rem;
+  &:focus {
+    outline: none;
   }
 }
